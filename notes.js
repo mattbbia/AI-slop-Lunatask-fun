@@ -6,7 +6,6 @@ const deleteNoteButton = document.querySelector("#delete-note");
 const notesEmptyState = document.querySelector("#notes-empty");
 const noteStatus = document.querySelector("#note-status");
 const notesEditor = document.querySelector(".notes-editor");
-const notesPlaceholder = document.querySelector("#notes-placeholder");
 
 const NOTES_STORAGE_KEY = "simple-todo-notes";
 
@@ -30,12 +29,6 @@ const setNoteInputsDisabled = (isDisabled) => {
   noteTitleInput.disabled = isDisabled;
   noteBodyInput.disabled = isDisabled;
   deleteNoteButton.disabled = isDisabled;
-};
-
-const updateEditorVisibility = () => {
-  const shouldShowEditor = Boolean(activeNoteId);
-  notesEditor.hidden = !shouldShowEditor;
-  notesPlaceholder.hidden = shouldShowEditor;
 };
 
 const renderNotesList = () => {
@@ -79,7 +72,6 @@ const selectNote = (noteId) => {
     noteTitleInput.value = "";
     noteBodyInput.value = "";
     setNoteInputsDisabled(true);
-    updateEditorVisibility();
     renderNotesList();
     return;
   }
@@ -87,7 +79,6 @@ const selectNote = (noteId) => {
   noteTitleInput.value = note.title;
   noteBodyInput.value = note.content;
   setNoteInputsDisabled(false);
-  updateEditorVisibility();
   renderNotesList();
 };
 
@@ -103,7 +94,6 @@ const createNote = () => {
   saveNotes();
   selectNote(newNote.id);
   updateNotesEmptyState();
-  updateEditorVisibility();
 };
 
 const updateActiveNote = () => {
@@ -138,7 +128,6 @@ const deleteActiveNote = () => {
     noteTitleInput.value = "";
     noteBodyInput.value = "";
     setNoteInputsDisabled(true);
-    updateEditorVisibility();
   }
 };
 
@@ -151,4 +140,4 @@ loadNotes();
 renderNotesList();
 setNoteInputsDisabled(true);
 updateNotesEmptyState();
-updateEditorVisibility();
+notesEditor.hidden = false;
