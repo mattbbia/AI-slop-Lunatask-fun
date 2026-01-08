@@ -117,6 +117,25 @@ body {
   border-color: var(--primary);
 }
 
+.habit-entry {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.habit-entry input {
+  flex: 1;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  font-size: 1rem;
+}
+
+.habit-entry input:focus {
+  outline: 2px solid rgba(90, 103, 245, 0.3);
+  border-color: var(--primary);
+}
+
 button {
   border: none;
   border-radius: 12px;
@@ -214,6 +233,79 @@ button:disabled {
   grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
   gap: 20px;
   align-items: start;
+}
+
+.habits-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.habits-range {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.habit-list {
+  display: grid;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.habit-item {
+  display: grid;
+  grid-template-columns: minmax(140px, 200px) minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: center;
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: #fafbff;
+}
+
+.habit-name {
+  font-size: 1rem;
+}
+
+.habit-track {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(20px, 1fr));
+  gap: 8px;
+}
+
+.habit-day {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
+  padding: 0;
+}
+
+.habit-day:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: rgba(90, 103, 245, 0.4);
+}
+
+.habit-day.is-complete {
+  background: rgba(47, 158, 120, 0.2);
+  border-color: rgba(47, 158, 120, 0.6);
+}
+
+.habit-streak {
+  font-weight: 600;
+  color: var(--muted);
+  text-align: right;
+  min-width: 80px;
+}
+
+.habit-streak__count {
+  font-size: 1.2rem;
+  color: var(--text);
+  margin-right: 4px;
 }
 
 .notes-sidebar {
@@ -339,6 +431,14 @@ button:disabled {
     width: 100%;
   }
 
+  .habit-entry {
+    flex-direction: column;
+  }
+
+  .habit-entry button {
+    width: 100%;
+  }
+
   .task-item {
     grid-template-columns: auto 1fr;
   }
@@ -355,5 +455,18 @@ button:disabled {
   .notes-sidebar__header {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .habit-item {
+    grid-template-columns: 1fr;
+    justify-items: start;
+  }
+
+  .habit-track {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+  }
+
+  .habit-streak {
+    text-align: left;
   }
 }
