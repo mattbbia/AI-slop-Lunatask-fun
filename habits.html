@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Habits</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="app__header">
+        <p class="app__eyebrow">Daily Focus</p>
+        <h1>Habits</h1>
+        <p class="app__subtitle">Build consistency with daily streak tracking.</p>
+      </header>
+
+      <nav class="app__tabs" aria-label="Primary">
+        <a class="tab" href="index.html">Tasks</a>
+        <a class="tab" href="notes.html">Notes</a>
+        <a class="tab is-active" href="habits.html">Habits</a>
+      </nav>
+
+      <section class="card" aria-labelledby="habit-entry-title">
+        <h2 id="habit-entry-title">Create a new habit</h2>
+        <form class="habit-entry" id="habit-form">
+          <label class="sr-only" for="habit-input">Habit name</label>
+          <input
+            id="habit-input"
+            name="habit"
+            type="text"
+            placeholder="Drink 8 glasses of water"
+            autocomplete="off"
+            required
+          />
+          <button type="submit">Add habit</button>
+        </form>
+      </section>
+
+      <section class="card" aria-live="polite">
+        <div class="habits-header">
+          <div>
+            <p class="app__eyebrow">Habits</p>
+            <h2>Your streaks</h2>
+          </div>
+          <p class="habits-range" id="habits-range"></p>
+        </div>
+        <div class="habit-list" id="habit-list"></div>
+        <p class="empty" id="habits-empty">Add a habit to start tracking your streak.</p>
+      </section>
+    </main>
+
+    <script src="habits.js"></script>
+  </body>
+</html>
