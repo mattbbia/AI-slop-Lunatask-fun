@@ -15,90 +15,39 @@
       </header>
 
       <nav class="app__tabs" aria-label="Primary">
-        <button class="tab is-active" type="button" data-tab="tasks">Tasks</button>
-        <button class="tab" type="button" data-tab="notes">Notes</button>
+        <a class="tab is-active" href="index.html">Tasks</a>
+        <a class="tab" href="notes.html">Notes</a>
       </nav>
 
-      <section class="page page--tasks" data-page="tasks">
-        <section class="card" aria-labelledby="task-entry-title">
-          <h2 id="task-entry-title">Add a new task</h2>
-          <form class="task-entry" id="task-form">
-            <label class="sr-only" for="task-input">What needs to be done?</label>
-            <input
-              id="task-input"
-              name="task"
-              type="text"
-              placeholder="Plan the sprint retro"
-              autocomplete="off"
-              required
-            />
-            <button type="submit">Add Task</button>
-          </form>
-          <div class="task-meta">
-            <span id="task-count">0 tasks</span>
-            <button class="ghost" type="button" id="clear-completed" disabled>
-              Clear completed
-            </button>
-          </div>
-        </section>
-
-        <section class="card" aria-live="polite">
-          <h2 class="sr-only">Task list</h2>
-          <ul class="task-list" id="task-list"></ul>
-          <p class="empty" id="empty-state">You are all caught up. Add your first task!</p>
-        </section>
+      <section class="card" aria-labelledby="task-entry-title">
+        <h2 id="task-entry-title">Add a new task</h2>
+        <form class="task-entry" id="task-form">
+          <label class="sr-only" for="task-input">What needs to be done?</label>
+          <input
+            id="task-input"
+            name="task"
+            type="text"
+            placeholder="Plan the sprint retro"
+            autocomplete="off"
+            required
+          />
+          <button type="submit">Add Task</button>
+        </form>
+        <div class="task-meta">
+          <span id="task-count">0 tasks</span>
+          <button class="ghost" type="button" id="clear-completed" disabled>
+            Clear completed
+          </button>
+        </div>
       </section>
 
-      <section class="page page--notes" data-page="notes" hidden>
-        <div class="notes-layout">
-          <aside class="card notes-sidebar" aria-label="Notes list">
-            <div class="notes-sidebar__header">
-              <div>
-                <p class="app__eyebrow">Notes</p>
-                <h2>Your notes</h2>
-              </div>
-              <button type="button" id="new-note">New note</button>
-            </div>
-            <div class="notes-list" id="notes-list" role="list"></div>
-            <p class="empty" id="notes-empty">Create a note to get started.</p>
-          </aside>
-
-          <section class="card notes-placeholder" id="notes-placeholder">
-            <h3>Start a new note</h3>
-            <p>
-              Click “New note” to open the editor. Your notes are saved automatically
-              and support Markdown.
-            </p>
-          </section>
-
-          <section class="card notes-editor" aria-live="polite" hidden>
-            <div class="notes-editor__header">
-              <label class="sr-only" for="note-title">Note title</label>
-              <input
-                id="note-title"
-                type="text"
-                placeholder="Note title"
-                autocomplete="off"
-              />
-              <div class="notes-editor__actions">
-                <span class="notes-status" id="note-status">Auto-saved</span>
-                <button class="ghost" type="button" id="delete-note" disabled>
-                  Delete note
-                </button>
-              </div>
-            </div>
-            <label class="sr-only" for="note-body">Note body</label>
-            <textarea
-              id="note-body"
-              rows="16"
-              placeholder="Write your note in Markdown..."
-            ></textarea>
-            <p class="notes-hint">Markdown supported. Your notes save automatically.</p>
-          </section>
-        </div>
+      <section class="card" aria-live="polite">
+        <h2 class="sr-only">Task list</h2>
+        <ul class="task-list" id="task-list"></ul>
+        <p class="empty" id="empty-state">You are all caught up. Add your first task!</p>
       </section>
     </main>
 
-    <script src="script.js"></script>
+    <script src="tasks.js"></script>
   </body>
 </html>

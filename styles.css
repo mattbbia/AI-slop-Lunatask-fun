@@ -59,12 +59,14 @@ body {
 }
 
 .tab {
+  display: inline-flex;
   padding: 10px 20px;
   border-radius: 999px;
   border: 1px solid var(--border);
   background: transparent;
   color: var(--muted);
   font-weight: 600;
+  text-decoration: none;
   cursor: pointer;
   transition: all 0.2s ease;
 }
