@@ -4,10 +4,22 @@ const taskList = document.querySelector("#task-list");
 const taskCount = document.querySelector("#task-count");
 const clearCompletedButton = document.querySelector("#clear-completed");
 const emptyState = document.querySelector("#empty-state");
+const tabButtons = document.querySelectorAll(".tab");
+const pages = document.querySelectorAll("[data-page]");
+const notesList = document.querySelector("#notes-list");
+const newNoteButton = document.querySelector("#new-note");
+const noteTitleInput = document.querySelector("#note-title");
+const noteBodyInput = document.querySelector("#note-body");
+const deleteNoteButton = document.querySelector("#delete-note");
+const notesEmptyState = document.querySelector("#notes-empty");
+const noteStatus = document.querySelector("#note-status");
 
 const STORAGE_KEY = "simple-todo-tasks";
+const NOTES_STORAGE_KEY = "simple-todo-notes";
 
 let tasks = [];
+let notes = [];
+let activeNoteId = null;
 
 const saveTasks = () => {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
@@ -16,6 +28,15 @@ const saveTasks = () => {
 const loadTasks = () => {
   const storedTasks = localStorage.getItem(STORAGE_KEY);
   tasks = storedTasks ? JSON.parse(storedTasks) : [];
+};
+
+const saveNotes = () => {
+  localStorage.setItem(NOTES_STORAGE_KEY, JSON.stringify(notes));
+};
+
+const loadNotes = () => {
+  const storedNotes = localStorage.getItem(NOTES_STORAGE_KEY);
+  notes = storedNotes ? JSON.parse(storedNotes) : [];
 };
 
 const updateStats = () => {
@@ -120,6 +141,126 @@ const clearCompleted = () => {
   saveTasks();
 };
 
+const setActiveTab = (tabName) => {
+  tabButtons.forEach((button) => {
+    button.classList.toggle("is-active", button.dataset.tab === tabName);
+  });
+
+  pages.forEach((page) => {
+    page.hidden = page.dataset.page !== tabName;
+  });
+};
+
+const updateNotesEmptyState = () => {
+  notesEmptyState.hidden = notes.length > 0;
+};
+
+const setNoteInputsDisabled = (isDisabled) => {
+  noteTitleInput.disabled = isDisabled;
+  noteBodyInput.disabled = isDisabled;
+  deleteNoteButton.disabled = isDisabled;
+};
+
+const renderNotesList = () => {
+  notesList.innerHTML = "";
+
+  notes.forEach((note) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "notes-list__item";
+    button.textContent = note.title?.trim() || "Untitled note";
+    button.dataset.id = note.id;
+    button.setAttribute(
+      "aria-label",
+      `Open note ${note.title?.trim() || "Untitled note"}`,
+    );
+    if (note.id === activeNoteId) {
+      button.classList.add("is-active");
+    }
+    button.addEventListener("click", () => {
+      selectNote(note.id);
+    });
+    notesList.appendChild(button);
+  });
+
+  updateNotesEmptyState();
+};
+
+const updateNoteStatus = () => {
+  const now = new Date();
+  noteStatus.textContent = `Saved ${now.toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  })}`;
+};
+
+const selectNote = (noteId) => {
+  const note = notes.find((item) => item.id === noteId);
+  activeNoteId = note ? note.id : null;
+
+  if (!note) {
+    noteTitleInput.value = "";
+    noteBodyInput.value = "";
+    setNoteInputsDisabled(true);
+    renderNotesList();
+    return;
+  }
+
+  noteTitleInput.value = note.title;
+  noteBodyInput.value = note.content;
+  setNoteInputsDisabled(false);
+  renderNotesList();
+};
+
+const createNote = () => {
+  const newNote = {
+    id: crypto.randomUUID(),
+    title: "Untitled note",
+    content: "",
+    updatedAt: new Date().toISOString(),
+  };
+
+  notes.unshift(newNote);
+  saveNotes();
+  selectNote(newNote.id);
+  updateNotesEmptyState();
+};
+
+const updateActiveNote = () => {
+  const note = notes.find((item) => item.id === activeNoteId);
+  if (!note) {
+    return;
+  }
+
+  note.title = noteTitleInput.value.trim() || "Untitled note";
+  note.content = noteBodyInput.value;
+  note.updatedAt = new Date().toISOString();
+  saveNotes();
+  renderNotesList();
+  updateNoteStatus();
+};
+
+const deleteActiveNote = () => {
+  if (!activeNoteId) {
+    return;
+  }
+
+  notes = notes.filter((note) => note.id !== activeNoteId);
+  const nextNote = notes[0];
+  activeNoteId = null;
+  saveNotes();
+  renderNotesList();
+  updateNotesEmptyState();
+
+  if (nextNote) {
+    selectNote(nextNote.id);
+  } else {
+    noteTitleInput.value = "";
+    noteBodyInput.value = "";
+    setNoteInputsDisabled(true);
+  }
+};
+
 taskForm.addEventListener("submit", (event) => {
   event.preventDefault();
   addTask(taskInput.value);
@@ -128,6 +269,23 @@ taskForm.addEventListener("submit", (event) => {
 });
 
 clearCompletedButton.addEventListener("click", clearCompleted);
+newNoteButton.addEventListener("click", createNote);
+noteTitleInput.addEventListener("input", updateActiveNote);
+noteBodyInput.addEventListener("input", updateActiveNote);
+deleteNoteButton.addEventListener("click", deleteActiveNote);
+
+tabButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    setActiveTab(button.dataset.tab);
+  });
+});
 
 loadTasks();
 renderTasks();
+loadNotes();
+renderNotesList();
+setNoteInputsDisabled(notes.length === 0);
+updateNotesEmptyState();
+if (notes.length > 0) {
+  selectNote(notes[0].id);
+}
