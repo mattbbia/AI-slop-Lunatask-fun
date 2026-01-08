@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Simple To-Do List</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="app__header">
+        <p class="app__eyebrow">Daily Focus</p>
+        <h1>To-Do List</h1>
+        <p class="app__subtitle">Capture tasks, stay on track, and celebrate progress.</p>
+      </header>
+
+      <section class="card" aria-labelledby="task-entry-title">
+        <h2 id="task-entry-title">Add a new task</h2>
+        <form class="task-entry" id="task-form">
+          <label class="sr-only" for="task-input">What needs to be done?</label>
+          <input
+            id="task-input"
+            name="task"
+            type="text"
+            placeholder="Plan the sprint retro"
+            autocomplete="off"
+            required
+          />
+          <button type="submit">Add Task</button>
+        </form>
+        <div class="task-meta">
+          <span id="task-count">0 tasks</span>
+          <button class="ghost" type="button" id="clear-completed" disabled>
+            Clear completed
+          </button>
+        </div>
+      </section>
+
+      <section class="card" aria-live="polite">
+        <h2 class="sr-only">Task list</h2>
+        <ul class="task-list" id="task-list"></ul>
+        <p class="empty" id="empty-state">You are all caught up. Add your first task!</p>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
