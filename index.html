@@ -63,7 +63,15 @@
             <p class="empty" id="notes-empty">Create a note to get started.</p>
           </aside>
 
-          <section class="card notes-editor" aria-live="polite">
+          <section class="card notes-placeholder" id="notes-placeholder">
+            <h3>Start a new note</h3>
+            <p>
+              Click “New note” to open the editor. Your notes are saved automatically
+              and support Markdown.
+            </p>
+          </section>
+
+          <section class="card notes-editor" aria-live="polite" hidden>
             <div class="notes-editor__header">
               <label class="sr-only" for="note-title">Note title</label>
               <input

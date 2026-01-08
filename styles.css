@@ -259,6 +259,18 @@ button:disabled {
   gap: 16px;
 }
 
+.notes-placeholder {
+  display: grid;
+  gap: 12px;
+  text-align: left;
+  color: var(--muted);
+}
+
+.notes-placeholder h3 {
+  color: var(--text);
+  font-size: 1.1rem;
+}
+
 .notes-editor__header {
   display: flex;
   flex-wrap: wrap;

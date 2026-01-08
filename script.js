@@ -13,6 +13,8 @@ const noteBodyInput = document.querySelector("#note-body");
 const deleteNoteButton = document.querySelector("#delete-note");
 const notesEmptyState = document.querySelector("#notes-empty");
 const noteStatus = document.querySelector("#note-status");
+const notesEditor = document.querySelector(".notes-editor");
+const notesPlaceholder = document.querySelector("#notes-placeholder");
 
 const STORAGE_KEY = "simple-todo-tasks";
 const NOTES_STORAGE_KEY = "simple-todo-notes";
@@ -161,6 +163,12 @@ const setNoteInputsDisabled = (isDisabled) => {
   deleteNoteButton.disabled = isDisabled;
 };
 
+const updateEditorVisibility = () => {
+  const shouldShowEditor = Boolean(activeNoteId);
+  notesEditor.hidden = !shouldShowEditor;
+  notesPlaceholder.hidden = shouldShowEditor;
+};
+
 const renderNotesList = () => {
   notesList.innerHTML = "";
 
@@ -202,6 +210,7 @@ const selectNote = (noteId) => {
     noteTitleInput.value = "";
     noteBodyInput.value = "";
     setNoteInputsDisabled(true);
+    updateEditorVisibility();
     renderNotesList();
     return;
   }
@@ -209,6 +218,7 @@ const selectNote = (noteId) => {
   noteTitleInput.value = note.title;
   noteBodyInput.value = note.content;
   setNoteInputsDisabled(false);
+  updateEditorVisibility();
   renderNotesList();
 };
 
@@ -224,6 +234,7 @@ const createNote = () => {
   saveNotes();
   selectNote(newNote.id);
   updateNotesEmptyState();
+  updateEditorVisibility();
 };
 
 const updateActiveNote = () => {
@@ -258,6 +269,7 @@ const deleteActiveNote = () => {
     noteTitleInput.value = "";
     noteBodyInput.value = "";
     setNoteInputsDisabled(true);
+    updateEditorVisibility();
   }
 };
 
@@ -286,6 +298,5 @@ loadNotes();
 renderNotesList();
 setNoteInputsDisabled(notes.length === 0);
 updateNotesEmptyState();
-if (notes.length > 0) {
-  selectNote(notes[0].id);
-}
+updateEditorVisibility();
+setActiveTab("tasks");
