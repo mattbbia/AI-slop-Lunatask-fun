@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Notes</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="app__header">
+        <p class="app__eyebrow">Daily Focus</p>
+        <h1>Notes</h1>
+        <p class="app__subtitle">Capture ideas, journal entries, and meeting notes.</p>
+      </header>
+
+      <nav class="app__tabs" aria-label="Primary">
+        <a class="tab" href="index.html">Tasks</a>
+        <a class="tab is-active" href="notes.html">Notes</a>
+      </nav>
+
+      <section class="notes-layout">
+        <aside class="card notes-sidebar" aria-label="Notes list">
+          <div class="notes-sidebar__header">
+            <div>
+              <p class="app__eyebrow">Notes</p>
+              <h2>Your notes</h2>
+            </div>
+            <button type="button" id="new-note">New note</button>
+          </div>
+          <div class="notes-list" id="notes-list" role="list"></div>
+          <p class="empty" id="notes-empty">Create a note to get started.</p>
+        </aside>
+
+        <section class="card notes-editor" aria-live="polite">
+          <div class="notes-editor__header">
+            <label class="sr-only" for="note-title">Note title</label>
+            <input
+              id="note-title"
+              type="text"
+              placeholder="Note title"
+              autocomplete="off"
+            />
+            <div class="notes-editor__actions">
+              <span class="notes-status" id="note-status">Auto-saved</span>
+              <button class="ghost" type="button" id="delete-note" disabled>
+                Delete note
+              </button>
+            </div>
+          </div>
+          <label class="sr-only" for="note-body">Note body</label>
+          <textarea
+            id="note-body"
+            rows="16"
+            placeholder="Write your note in Markdown..."
+          ></textarea>
+          <p class="notes-hint">Markdown supported. Your notes save automatically.</p>
+        </section>
+      </section>
+    </main>
+
+    <script src="notes.js"></script>
+  </body>
+</html>
