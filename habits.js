@@ -3,6 +3,8 @@ const habitInput = document.querySelector("#habit-input");
 const habitList = document.querySelector("#habit-list");
 const habitsEmpty = document.querySelector("#habits-empty");
 const habitsRange = document.querySelector("#habits-range");
+const addButton = document.querySelector("#add-button");
+const addPanel = document.querySelector("#add-panel");
 
 const STORAGE_KEY = "simple-todo-habits";
 const DAYS_TO_SHOW = 7;
@@ -143,6 +145,17 @@ habitForm.addEventListener("submit", (event) => {
   habitInput.value = "";
   habitInput.focus();
 });
+
+if (addButton && addPanel) {
+  addButton.addEventListener("click", () => {
+    const willShow = addPanel.hidden;
+    addPanel.hidden = !willShow;
+    addButton.setAttribute("aria-expanded", String(willShow));
+    if (willShow) {
+      habitInput.focus();
+    }
+  });
+}
 
 loadHabits();
 renderHabits();

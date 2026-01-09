@@ -16,8 +16,7 @@
         <a class="tab" href="relationships.html">Relationships</a>
       </nav>
 
-      <section class="card" aria-labelledby="habit-entry-title">
-        <h2 id="habit-entry-title">Create a new habit</h2>
+      <section class="card entry-panel" id="add-panel" aria-label="Habit entry" hidden>
         <form class="habit-entry" id="habit-form">
           <label class="sr-only" for="habit-input">Habit name</label>
           <input
@@ -44,6 +43,17 @@
         <p class="empty" id="habits-empty">Add a habit to start tracking your streak.</p>
       </section>
     </main>
+
+    <button
+      class="fab"
+      id="add-button"
+      type="button"
+      aria-label="Add"
+      aria-expanded="false"
+      aria-controls="add-panel"
+    >
+      +
+    </button>
 
     <script src="habits.js"></script>
   </body>
