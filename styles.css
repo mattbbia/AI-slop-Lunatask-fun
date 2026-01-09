@@ -158,6 +158,30 @@ button:disabled {
   box-shadow: none;
 }
 
+.field {
+  display: grid;
+  gap: 6px;
+  font-weight: 600;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.field input,
+.field textarea {
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  padding: 12px 14px;
+  font-size: 1rem;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  color: var(--text);
+}
+
+.field input:focus,
+.field textarea:focus {
+  outline: 2px solid rgba(90, 103, 245, 0.3);
+  border-color: var(--primary);
+}
+
 .ghost {
   background: transparent;
   color: var(--muted);
@@ -233,6 +257,151 @@ button:disabled {
   grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
   gap: 20px;
   align-items: start;
+}
+
+.relationship-entry {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
+  margin-top: 16px;
+  align-items: end;
+}
+
+.relationship-entry button {
+  height: fit-content;
+}
+
+.form-hint {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.relationships-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.relationships-count {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.relationship-grid {
+  display: grid;
+  gap: 16px;
+  margin-top: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.relationship-card {
+  width: 100%;
+  text-align: left;
+  background: #fafbff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+  display: grid;
+  gap: 12px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.relationship-card:hover {
+  border-color: rgba(90, 103, 245, 0.4);
+  box-shadow: 0 10px 18px rgba(31, 31, 40, 0.08);
+  transform: none;
+}
+
+.relationship-thumbnail {
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  background: rgba(90, 103, 245, 0.15);
+  display: grid;
+  place-items: center;
+  color: var(--primary-dark);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.relationship-meta {
+  display: grid;
+  gap: 6px;
+}
+
+.relationship-name {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.relationship-role {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.relationship-status {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: rgba(47, 158, 120, 0.12);
+  color: var(--success);
+  padding: 4px 8px;
+  border-radius: 999px;
+  width: fit-content;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(31, 31, 40, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 10;
+}
+
+.modal[hidden] {
+  display: none;
+}
+
+.modal__content {
+  width: min(720px, 100%);
+  background: var(--card);
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  padding: 24px;
+  display: grid;
+  gap: 16px;
+  box-shadow: 0 20px 40px rgba(31, 31, 40, 0.2);
+}
+
+.modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.modal__form {
+  display: grid;
+  gap: 16px;
+}
+
+.modal__grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.modal__actions {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .habits-header {
@@ -520,6 +689,14 @@ button:disabled {
   .notes-sidebar__header {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .relationship-entry {
+    grid-template-columns: 1fr;
+  }
+
+  .modal__grid {
+    grid-template-columns: 1fr;
   }
 
   .habit-item {
