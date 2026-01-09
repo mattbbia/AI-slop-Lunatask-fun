@@ -5,6 +5,8 @@ const touchInput = document.querySelector("#person-touch");
 const relationshipGrid = document.querySelector("#relationship-grid");
 const relationshipCount = document.querySelector("#relationship-count");
 const emptyState = document.querySelector("#relationships-empty");
+const addButton = document.querySelector("#add-button");
+const addPanel = document.querySelector("#add-panel");
 
 const modal = document.querySelector("#relationship-modal");
 const modalName = document.querySelector("#modal-name");
@@ -146,6 +148,17 @@ relationshipForm.addEventListener("submit", (event) => {
   relationshipForm.reset();
   nameInput.focus();
 });
+
+if (addButton && addPanel) {
+  addButton.addEventListener("click", () => {
+    const willShow = addPanel.hidden;
+    addPanel.hidden = !willShow;
+    addButton.setAttribute("aria-expanded", String(willShow));
+    if (willShow) {
+      nameInput.focus();
+    }
+  });
+}
 
 closeModalButton.addEventListener("click", closeModal);
 
