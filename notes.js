@@ -1,5 +1,5 @@
 const notesList = document.querySelector("#notes-list");
-const newNoteButton = document.querySelector("#new-note");
+const addButton = document.querySelector("#add-button");
 const noteTitleInput = document.querySelector("#note-title");
 const noteBodyInput = document.querySelector("#note-body");
 const deleteNoteButton = document.querySelector("#delete-note");
@@ -131,7 +131,9 @@ const deleteActiveNote = () => {
   }
 };
 
-newNoteButton.addEventListener("click", createNote);
+if (addButton) {
+  addButton.addEventListener("click", createNote);
+}
 noteTitleInput.addEventListener("input", updateActiveNote);
 noteBodyInput.addEventListener("input", updateActiveNote);
 deleteNoteButton.addEventListener("click", deleteActiveNote);
