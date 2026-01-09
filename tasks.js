@@ -4,6 +4,8 @@ const taskList = document.querySelector("#task-list");
 const taskCount = document.querySelector("#task-count");
 const clearCompletedButton = document.querySelector("#clear-completed");
 const emptyState = document.querySelector("#empty-state");
+const addButton = document.querySelector("#add-button");
+const addPanel = document.querySelector("#add-panel");
 
 const STORAGE_KEY = "simple-todo-tasks";
 
@@ -128,6 +130,17 @@ taskForm.addEventListener("submit", (event) => {
 });
 
 clearCompletedButton.addEventListener("click", clearCompleted);
+
+if (addButton && addPanel) {
+  addButton.addEventListener("click", () => {
+    const willShow = addPanel.hidden;
+    addPanel.hidden = !willShow;
+    addButton.setAttribute("aria-expanded", String(willShow));
+    if (willShow) {
+      taskInput.focus();
+    }
+  });
+}
 
 loadTasks();
 renderTasks();

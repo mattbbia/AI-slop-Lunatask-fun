@@ -22,8 +22,7 @@
         <a class="tab is-active" href="relationships.html">Relationships</a>
       </nav>
 
-      <section class="card" aria-labelledby="relationship-entry-title">
-        <h2 id="relationship-entry-title">Add a person</h2>
+      <section class="card entry-panel" id="add-panel" aria-label="Relationship entry" hidden>
         <form class="relationship-entry" id="relationship-form">
           <label class="field" for="person-name">
             Full name
@@ -68,6 +67,17 @@
         <p class="empty" id="relationships-empty">Add a person to start tracking relationships.</p>
       </section>
     </main>
+
+    <button
+      class="fab"
+      id="add-button"
+      type="button"
+      aria-label="Add"
+      aria-expanded="false"
+      aria-controls="add-panel"
+    >
+      +
+    </button>
 
     <div
       class="modal"

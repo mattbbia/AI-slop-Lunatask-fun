@@ -1,5 +1,5 @@
 const journalList = document.querySelector("#journal-list");
-const newEntryButton = document.querySelector("#new-entry");
+const addButton = document.querySelector("#add-button");
 const journalTitleInput = document.querySelector("#journal-title");
 const journalDateInput = document.querySelector("#journal-date");
 const journalBodyInput = document.querySelector("#journal-body");
@@ -167,7 +167,9 @@ const deleteActiveEntry = () => {
   }
 };
 
-newEntryButton.addEventListener("click", createEntry);
+if (addButton) {
+  addButton.addEventListener("click", createEntry);
+}
 journalTitleInput.addEventListener("input", updateActiveEntry);
 journalDateInput.addEventListener("input", updateActiveEntry);
 journalBodyInput.addEventListener("input", updateActiveEntry);

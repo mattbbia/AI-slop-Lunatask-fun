@@ -22,8 +22,7 @@
         <a class="tab" href="relationships.html">Relationships</a>
       </nav>
 
-      <section class="card" aria-labelledby="task-entry-title">
-        <h2 id="task-entry-title">Add a new task</h2>
+      <section class="card entry-panel" id="add-panel" aria-label="Task entry" hidden>
         <form class="task-entry" id="task-form">
           <label class="sr-only" for="task-input">What needs to be done?</label>
           <input
@@ -50,6 +49,17 @@
         <p class="empty" id="empty-state">You are all caught up. Add your first task!</p>
       </section>
     </main>
+
+    <button
+      class="fab"
+      id="add-button"
+      type="button"
+      aria-label="Add"
+      aria-expanded="false"
+      aria-controls="add-panel"
+    >
+      +
+    </button>
 
     <script src="tasks.js"></script>
   </body>
