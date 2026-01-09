@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Relationships</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="app__header">
+        <p class="app__eyebrow">Daily Focus</p>
+        <h1>Relationships</h1>
+        <p class="app__subtitle">Stay close to the people who matter most.</p>
+      </header>
+
+      <nav class="app__tabs" aria-label="Primary">
+        <a class="tab" href="index.html">Tasks</a>
+        <a class="tab" href="notes.html">Notes</a>
+        <a class="tab" href="journal.html">Journal</a>
+        <a class="tab" href="habits.html">Habits</a>
+        <a class="tab is-active" href="relationships.html">Relationships</a>
+      </nav>
+
+      <section class="card" aria-labelledby="relationship-entry-title">
+        <h2 id="relationship-entry-title">Add a person</h2>
+        <form class="relationship-entry" id="relationship-form">
+          <label class="field" for="person-name">
+            Full name
+            <input
+              id="person-name"
+              name="name"
+              type="text"
+              placeholder="Jordan Lee"
+              autocomplete="off"
+              required
+            />
+          </label>
+          <label class="field" for="person-role">
+            Relationship
+            <input
+              id="person-role"
+              name="role"
+              type="text"
+              placeholder="Mentor, Partner, Teammate"
+              autocomplete="off"
+              required
+            />
+          </label>
+          <label class="field" for="person-touch">
+            Last connected
+            <input id="person-touch" name="lastContact" type="date" required />
+          </label>
+          <button type="submit">Add person</button>
+        </form>
+        <p class="form-hint">Click a completed profile to add deeper notes and reminders.</p>
+      </section>
+
+      <section class="card" aria-live="polite">
+        <div class="relationships-header">
+          <div>
+            <p class="app__eyebrow">Connections</p>
+            <h2>Your circle</h2>
+          </div>
+          <span class="relationships-count" id="relationship-count">0 people</span>
+        </div>
+        <div class="relationship-grid" id="relationship-grid"></div>
+        <p class="empty" id="relationships-empty">Add a person to start tracking relationships.</p>
+      </section>
+    </main>
+
+    <div
+      class="modal"
+      id="relationship-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="relationship-modal-title"
+      hidden
+    >
+      <div class="modal__content">
+        <div class="modal__header">
+          <div>
+            <p class="app__eyebrow">Relationship profile</p>
+            <h2 id="relationship-modal-title">
+              Add details for <span id="modal-name">someone</span>
+            </h2>
+          </div>
+          <button class="ghost" type="button" id="close-modal">Close</button>
+        </div>
+        <form class="modal__form" id="relationship-detail-form">
+          <div class="modal__grid">
+            <label class="field" for="detail-nickname">
+              Nickname
+              <input
+                id="detail-nickname"
+                type="text"
+                placeholder="Jordy"
+                autocomplete="off"
+              />
+            </label>
+            <label class="field" for="detail-location">
+              Location
+              <input
+                id="detail-location"
+                type="text"
+                placeholder="Seattle, WA"
+                autocomplete="off"
+              />
+            </label>
+            <label class="field" for="detail-birthday">
+              Important date
+              <input id="detail-birthday" type="date" />
+            </label>
+            <label class="field" for="detail-frequency">
+              Connection cadence
+              <input
+                id="detail-frequency"
+                type="text"
+                placeholder="Every 2 weeks"
+                autocomplete="off"
+              />
+            </label>
+          </div>
+          <label class="field" for="detail-notes">
+            Notes
+            <textarea
+              id="detail-notes"
+              rows="4"
+              placeholder="What matters most to them?"
+            ></textarea>
+          </label>
+          <label class="field" for="detail-next">
+            Next touchpoint
+            <textarea
+              id="detail-next"
+              rows="3"
+              placeholder="Plan a coffee catch-up"
+            ></textarea>
+          </label>
+          <div class="modal__actions">
+            <button type="submit">Save details</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="relationships.js"></script>
+  </body>
+</html>
