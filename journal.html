@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Journal</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="app__header">
+        <p class="app__eyebrow">Daily Focus</p>
+        <h1>Journal</h1>
+        <p class="app__subtitle">Reflect on your day with date-stamped entries.</p>
+      </header>
+
+      <nav class="app__tabs" aria-label="Primary">
+        <a class="tab" href="index.html">Tasks</a>
+        <a class="tab" href="notes.html">Notes</a>
+        <a class="tab is-active" href="journal.html">Journal</a>
+        <a class="tab" href="habits.html">Habits</a>
+      </nav>
+
+      <section class="notes-layout">
+        <aside class="card notes-sidebar" aria-label="Journal entries">
+          <div class="notes-sidebar__header">
+            <div>
+              <p class="app__eyebrow">Journal</p>
+              <h2>Your entries</h2>
+            </div>
+            <button type="button" id="new-entry">New entry</button>
+          </div>
+          <div class="journal-list" id="journal-list" role="list"></div>
+          <p class="empty" id="journal-empty">Create an entry to get started.</p>
+        </aside>
+
+        <section class="card notes-editor" aria-live="polite">
+          <div class="notes-editor__header">
+            <label class="sr-only" for="journal-title">Entry title</label>
+            <input
+              id="journal-title"
+              type="text"
+              placeholder="Entry title"
+              autocomplete="off"
+            />
+            <label class="sr-only" for="journal-date">Entry date</label>
+            <input id="journal-date" type="date" />
+            <div class="notes-editor__actions">
+              <span class="notes-status" id="journal-status">Auto-saved</span>
+              <button class="ghost" type="button" id="delete-entry" disabled>
+                Delete entry
+              </button>
+            </div>
+          </div>
+          <label class="sr-only" for="journal-body">Entry body</label>
+          <textarea
+            id="journal-body"
+            rows="16"
+            placeholder="Write your entry in Markdown..."
+          ></textarea>
+          <p class="notes-hint">Markdown supported. Your journal saves automatically.</p>
+        </section>
+      </section>
+    </main>
+
+    <script src="journal.js"></script>
+  </body>
+</html>

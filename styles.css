@@ -326,6 +326,23 @@ button:disabled {
   gap: 8px;
 }
 
+.journal-list {
+  position: relative;
+  display: grid;
+  gap: 16px;
+  padding-left: 20px;
+}
+
+.journal-list::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 4px;
+  bottom: 4px;
+  width: 2px;
+  background: var(--border);
+}
+
 .notes-list__item {
   width: 100%;
   text-align: left;
@@ -346,6 +363,54 @@ button:disabled {
 .notes-list__item.is-active {
   background: rgba(90, 103, 245, 0.15);
   border-color: rgba(90, 103, 245, 0.4);
+}
+
+.journal-list__item {
+  position: relative;
+  width: 100%;
+  text-align: left;
+  display: grid;
+  gap: 4px;
+  padding: 12px 14px 12px 22px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  background: rgba(90, 103, 245, 0.06);
+  color: var(--text);
+  font-weight: 600;
+}
+
+.journal-list__item::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 18px;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: var(--card);
+  border: 2px solid var(--primary);
+}
+
+.journal-list__item:hover {
+  border-color: rgba(90, 103, 245, 0.25);
+  transform: none;
+  box-shadow: none;
+}
+
+.journal-list__item.is-active {
+  background: rgba(90, 103, 245, 0.15);
+  border-color: rgba(90, 103, 245, 0.4);
+}
+
+.journal-list__date {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+
+.journal-list__title {
+  font-size: 0.95rem;
 }
 
 .notes-editor {
